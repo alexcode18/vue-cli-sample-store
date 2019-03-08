@@ -1,5 +1,9 @@
 <template>
   <div id="app">
+    <header class="">
+      <h1>Betalo</h1>
+      <Cart cart="cart" :cart="cart" />
+    </header>
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
@@ -7,6 +11,41 @@
     <router-view />
   </div>
 </template>
+
+<script>
+
+import Cart from "@/components/Cart.vue"
+
+export default {
+    name: 'app',
+    components: {
+        Cart
+    },
+    props: [
+        "cart"
+    ],
+    data() {
+        return {
+           cart: 0
+        }
+    },
+    mounted: function() {
+    },
+
+    methods: {
+
+
+    },
+    computed: {
+
+
+    },
+    watch: {
+
+    }
+}
+
+</script>
 
 <style>
 #app {
