@@ -98,7 +98,7 @@
 		mounted: function() {
 		}
 	}
-	</script>
+</script>
 
 <style>
 

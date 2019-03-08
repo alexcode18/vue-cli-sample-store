@@ -9,7 +9,7 @@
 import HelloWorld from "@/components/HelloWorld.vue";
 import EventCard from "@/components/EventCard.vue";
 import Product from "@/components/Product.vue";
-import Cart from "@/components/Cart.vue";
+// import Cart from "@/components/Cart.vue";
 
 export default {
     name: "home",
@@ -17,7 +17,7 @@ export default {
         HelloWorld,
         EventCard,
         Product,
-        Cart
+        // Cart
     },
     props: [],
     data() {

@@ -2,7 +2,7 @@
   <div id="app">
     <header class="">
       <h1>Betalo</h1>
-      <Cart cart="cart" :cart="cart" />
+      <Cart :cart="store.state.cart" />
     </header>
     <div id="nav">
       <router-link to="/">Home</router-link> |
@@ -26,7 +26,7 @@ export default {
     ],
     data() {
         return {
-           cart: 0
+          
         }
     },
     mounted: function() {
