@@ -2,16 +2,16 @@
  
     <!-- <li>made it to swatches {{ swatch.color }}</li> -->
     <p>Cart</p> 
-    <!-- <CartItem v-for="cartItem of store.state.cart" /> -->
+    <CartItem v-for="cartItem of store.getters.getCart()" />
 </template>
 <script>
 
-// import CartItem from "@/components/CartItem.vue"
+import CartItem from "@/components/CartItem.vue"
 
 export default {
     name: 'Cart',
     components: {
-        // CartItem
+        CartItem
     },
     props: [
     ],
@@ -21,13 +21,10 @@ export default {
     },
     mounted: function() {
     },
-
     methods: {
-
 
     },
     computed: {
-
 
     },
     watch: {

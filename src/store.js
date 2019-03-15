@@ -11,7 +11,7 @@ export default new Vuex.Store({
   	getCart: state => {
   		return state.cart
   	}
-  }
+  },
   mutations: {},
   actions: {}
 });

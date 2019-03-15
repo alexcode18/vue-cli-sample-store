@@ -16,7 +16,7 @@
 			<button @click="decreaseItem" :class="'num-item-button decrease-num-item-button ' + { disabledButton: !cartReady }" :disabled="!greaterThanOne">Less</button>
 			<p>You have {{ inCart }} in your cart</p>
 			<p v-if="!cartReady">There are only {{product.variants[currentVariant].inStock}} in stock</p>
-			<button @click="addToCart" :class="'add-cart-button ' + { disabledButton: !cartReady }" :disabled="!cartReady">Add to Cart</button>
+			<button @click="emitToCart"  @add-to-cart="updateCart" :class="'add-cart-button ' + { disabledButton: !cartReady }" :disabled="!cartReady">Add to Cart</button>
 		</div>
 	</div>
 
@@ -64,13 +64,13 @@
 		},
 		// Functions that are replicated often. More likely to 
 		methods: {
-			increaseItem () {
+			increaseItem() {
 				this.inCart += 1;
 			},
-			decreaseItem () {
+			decreaseItem() {
 				this.inCart -= 1;
 			},
-			addToCart () {
+			emitToCart() {
 				cartItem = {
 					productID: this.product.variants[this.currentVariant['color']],
 					productQuantity: this.inCart,
@@ -78,7 +78,7 @@
 				}
 				this.$emit('add-to-cart', cartItem );
 			},
-			onSale (){
+			onSale() {
 				return this.product.inCart>4;
 			},
 			updateColor(id) {
@@ -91,6 +91,9 @@
 			},
 			color() {
 				return this.product.variants[this.currentVariant['color']].color;
+			},
+			updateCart(prodInfo) {
+				store.state.cart.push(prodInfo);
 			}
 		},
 		created: function() {

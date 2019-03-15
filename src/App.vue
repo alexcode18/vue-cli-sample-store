@@ -2,8 +2,8 @@
   <div id="app">
     <header class="">
       <h1>Betalo</h1>
-      <Cart :cart="store.state.cart" />
     </header>
+    <Cart />
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
@@ -14,15 +14,13 @@
 
 <script>
 
-import Cart from "@/components/Cart.vue"
-
 export default {
     name: 'app',
     components: {
-        Cart
+
     },
     props: [
-        "cart"
+
     ],
     data() {
         return {
