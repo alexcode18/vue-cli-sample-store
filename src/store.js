@@ -3,15 +3,21 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
-  	cart: []
+  	cartArray: []
   },
   getters: {
   	getCart: state => {
-  		return state.cart
+  		return state.cartArray;
   	}
   },
-  mutations: {},
+  mutations: {
+    addItem (state, info) {
+      state.cartArray.push(info);
+    }
+  },
   actions: {}
 });
+
+console.log('console on store vue',this.$store);

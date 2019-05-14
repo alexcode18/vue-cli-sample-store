@@ -16,7 +16,7 @@
 			<button @click="decreaseItem" :class="'num-item-button decrease-num-item-button ' + { disabledButton: !cartReady }" :disabled="!greaterThanOne">Less</button>
 			<p>You have {{ inCart }} in your cart</p>
 			<p v-if="!cartReady">There are only {{product.variants[currentVariant].inStock}} in stock</p>
-			<button @click="emitToCart"  @add-to-cart="updateCart" :class="'add-cart-button ' + { disabledButton: !cartReady }" :disabled="!cartReady">Add to Cart</button>
+			<button @click="emitToCart" :class="'add-cart-button ' + { disabledButton: !cartReady }" :disabled="!cartReady">Add to Cart</button><!-- @add-to-cart="updateCart" -->
 		</div>
 	</div>
 
@@ -24,8 +24,8 @@
 
 
 <script>
-	import Swatch from "@/components/Swatch.vue"
-	import ProductSize from "@/components/ProductSize.vue"
+	import Swatch from "@/components/Swatch.vue";
+	import ProductSize from "@/components/ProductSize.vue";
 
 	export default {
 		components: {
@@ -71,12 +71,15 @@
 				this.inCart -= 1;
 			},
 			emitToCart() {
-				cartItem = {
+				let cartItem = {
+					productName: this.product['productType'],
 					productID: this.product.variants[this.currentVariant['color']],
 					productQuantity: this.inCart,
 					productColor: this.product.variants[this.currentVariant['color']].color
 				}
-				this.$emit('add-to-cart', cartItem );
+
+				this.$store.commit('addItem',cartItem);
+				// this.$emit('add-to-cart', cartItem );
 			},
 			onSale() {
 				return this.product.inCart>4;
@@ -93,12 +96,13 @@
 				return this.product.variants[this.currentVariant['color']].color;
 			},
 			updateCart(prodInfo) {
-				store.state.cart.push(prodInfo);
+				this.$store.commit('addItem',prodInfo);
 			}
 		},
 		created: function() {
 		},
 		mounted: function() {
+			console.log('store',this.$store);
 		}
 	}
 </script>
@@ -130,8 +134,7 @@
 
     ul.size-variants,
     ul.color-variants {
-        padding-top: .5em;
-        padding-bottom: .5em;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
     }
-
 </style>
